@@ -1,33 +1,128 @@
-3function validateForm(){
-	/* Escribe tú código aquí */
-
-	//validar que los camposno esten vacios
-	var rpta=true;
-	var name = document.getElementById("name").value;
-	if( name == null || name.length == 0 || /^\s+$/.test(name) ) {
-  		alert (formulario[i].name+ ' no puede estar vacío o contener sólo espacios en blanco');
-  		rpta=false;
-  		return rpta;
-	}if(rpta==true){
-		formulario.submit();
-	}
-
-
-	//validar solo texto
-	var patron = /^[a-zA-Z]*$/;
-  // En caso de querer validar cadenas con espacios usar: /^[a-zA-Z\s]*$/
-  	if(!name.search(patron))
-    	return true;
-  	else
-    	return false;
-
-	
-
-
-
-	//validar e-mail
-	 var email = document.getElementById("input-email").value;
-	if( !(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)/.test(email)) ) {
-  		return false;
-	}
+//VALIDAR NOMBRE
+function validateM(_evt){
+    /*Los campos nombre y apellido sólo deben permitir caracteres de la A-Z*/
+        var nombre = document.getElementById("name").value;
+        
+        var nombreArray = nombre.split("");
+        var primeraLetra = nombreArray[0];
+        var primeraMayus = primeraLetra.toUpperCase();
+        var cortePalabra = false;
+      
+        for(var i=1;i<nombreArray.length;i++){
+            if(cortePalabra)
+            {    
+                primeraMayus += nombreArray[i].toUpperCase();
+                cortePalabra = false;
+            }
+            else
+                primeraMayus+=nombreArray[i];
+            if(nombreArray[i] == " ")
+                cortePalabra = true;
+            
+        }
+       
+       document.getElementById("name").value = primeraMayus; 
 }
+
+
+  function validateT(_evt){
+    /*Los campos nombre y apellido sólo deben permitir caracteres de la A-Z*/
+        palabra = window.event.keyCode;
+
+        if((palabra>=65 && palabra<=90)||palabra==8||palabra==32){
+            
+        } else {
+            // = "";
+            //alert("Este campo solo permite caracteres de la A-Z");
+            _evt.preventDefault();
+        }
+      
+} 
+
+//VALIDAR APELLIDOS
+function validateMA(_evt){
+    /*Los campos nombre y apellido sólo deben permitir caracteres de la A-Z*/
+        var apellido = document.getElementById("lastname").value;
+        
+        var nombreArray = apellido.split("");
+        var primeraLetra = nombreArray[0];
+        var primeraMayus = primeraLetra.toUpperCase();
+        var cortePalabra = false;
+      
+        for(var i=1;i<nombreArray.length;i++){
+            if(cortePalabra)
+            {    
+                primeraMayus += nombreArray[i].toUpperCase();
+                cortePalabra = false;
+            }
+            else
+                primeraMayus+=nombreArray[i];
+            if(nombreArray[i] == " ")
+                cortePalabra = true;     
+        }
+       
+       document.getElementById("lastname").value = primeraMayus; 
+}
+
+
+  function validateTA(_evt){
+    /*Los campos nombre y apellido sólo deben permitir caracteres de la A-Z*/
+        palabra = window.event.keyCode;
+
+        if((palabra>=65 && palabra<=90)||palabra==8||palabra==32){
+            
+        } else {
+            //alert("Este campo solo permite caracteres de la A-Z");
+            _evt.preventDefault();
+        }
+} 
+
+//VALIDAR EMAIL
+  function validateEmail(_evt){
+    
+      var email = document.getElementById("input-email").value;
+      var mensaje = document.getElementById("mensaje3");
+      
+      if(!/([a-zA-Z0-9(-_.)]+[@][a-zA-Z0-9]+[.][a-zA-Z]+)/g.test(email)){
+        mensaje.innerHTML = "<h5 style='color:#8A2BE2';>Correo Electrónico Inválido</h5>"
+      } else {
+        mensaje.innerHTML = "";
+      }
+      
+} 
+
+
+//El campo password debe tener al menos 6 caracteres
+//El campo password no puede ser igual a "password" ó "123456" ó "098754"    
+  function validatePass(_evt){
+      
+      var pass = document.getElementById("input-password").value;
+      var msg = document.getElementById("mensaje");
+      
+      
+      if((pass != "123456" || pass != "098754" || pass.toLowerCase() != "password") && (pass.length < 6) ) {
+       msg.innerHTML = "<h5 style='color:#8A2BE2';>Contraseña Inválida</h5>"
+      } else {
+       msg.innerHTML = "";
+      }
+        
+  }
+    
+
+  function validateType(_evt){
+      
+      var type = document.querySelector("select").value;
+      var mensaje = document.getElementById("mensaje2");
+      
+      
+      if(type == 0){
+          mensaje.innerHTML = "<h5 style='color:#8A2BE2';>No seleccionaste ninguna bicicleta</h5>";
+      } else {
+          mensaje.innerHTML = "";
+      }   
+  }
+
+//ENVIAR TIPO DE BICICLETA SOLO AL PRESIONAR "REGISTRAR"
+ function validateForm(){
+    validateType();
+ }

@@ -12,9 +12,9 @@
     <link href="https://fonts.googleapis.com/css?family=Prompt:200,300,400,500" rel="stylesheet">
     <!-- Optional theme -->
     <link rel="stylesheet" href="css/registro.css">
-</head>
+  </head>
   <body>
-    <section class="form-container">
+    <section class="form-container ">
       <div class="container-fluid">
         <form class="form-signup">
           <h2 id="form-signup-heading">
@@ -23,33 +23,36 @@
           <div class="name-container input-box">
             <label for="name" class="sr-only">Nombre</label>
             <input type="text" id="name" class="form-control"
-            placeholder="Ingrese su nombre">
+            placeholder="Ingrese su nombre" onkeyup="validateM(event)" onkeydown="validateT(event)" required>
           </div>
           <div class="lastname-container input-box">
             <label for="lastname" class="sr-only">Apellido</label>
             <input type="text" id="lastname" class="form-control"
-            placeholder="Ingrese su apellido" required>
+            placeholder="Ingrese su apellido" onkeyup="validateMA(event)" onkeydown="validateTA(event)" required>
           </div>
           <div class="email-container input-box">
             <label for="inputEmail" class="sr-only">
               Correo Electrónico
             </label>
-            <input type="email" id="input-email" class="form-control" placeholder="Ingrese su correo electrónico" autofocus="">
+            <input type="email" id="input-email" class="form-control" placeholder="Ingrese su correo electrónico" autofocus="" onkeyup="validateEmail(event)" required>
+            <div id="mensaje3"></div>
           </div>
           <div class="form-group">
             <label for="inputPassword" class="sr-only">
               Contraseña
             </label>
-            <input type="password" id="input-password" class="form-control" placeholder="Ingrese su contraseña">
+            <input type="password" id="input-password" class="form-control" placeholder="Ingrese su contraseña" onkeyup="validatePass(event)" required>
+            <div id="mensaje"></div>
           </div>
           <div class="form-group">
-            <select class="form-control">
+            <select class="form-control" onchange="validateType(event)" >
               <option value="0">Selecciona tu tipo de bici</option>
               <option value="urbana">Urbana</option>
               <option value="treking">Treking</option>
               <option value="electrica">Eléctrica</option>
               <option value="estatica">Estática</option>
             </select>
+            <div id="mensaje2"></div>
           </div>
           <div class="input-group">
             <div class="input-group-addon">@</div>
